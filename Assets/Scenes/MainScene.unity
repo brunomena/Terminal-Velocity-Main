@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a52ecdb12a2e543be2b03604becf4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 25
   turnspeed: 60
   Health: 10
 --- !u!65 &1140954470
@@ -735,6 +735,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1563001539, guid: 3f1ae32709ed4c249b31e5e05d884ba1, type: 3}
+      propertyPath: range
+      value: 20000
+      objectReference: {fileID: 0}
     - target: {fileID: 1563001539, guid: 3f1ae32709ed4c249b31e5e05d884ba1, type: 3}
       propertyPath: target
       value: 

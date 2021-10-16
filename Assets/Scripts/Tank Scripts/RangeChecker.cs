@@ -19,7 +19,7 @@ public class RangeChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -55,13 +55,17 @@ public class RangeChecker : MonoBehaviour
 
 
         if (canShoot && targetWasInRange)
-        {
-            Vector3 playerPos = new Vector3(target.position.x, target.position.y, target.position.z+8);
-            Instantiate(tankBullet, transform.position, Quaternion.LookRotation(playerPos));
-            //Quaternion.LookRotation(playerPos)
+        { 
+            // Get the normalized direction to the target
+            var directionToTarget = (target.position - transform.position).normalized;
+
+            //outro jeito de mirar o tiro
+            //https://www.youtube.com/watch?v=kOzhE3_P2Mk
+            Instantiate(tankBullet, transform.position, Quaternion.LookRotation(directionToTarget));
             canShoot = false;
             //Cadency of bullets
             StartCoroutine("BulletDelay");
+
         }
 
 
@@ -70,7 +74,7 @@ public class RangeChecker : MonoBehaviour
     {
 
         //Time the player has to wait until he can shoot another bullet
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         canShoot = true;
     }
 }
