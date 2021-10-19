@@ -59,15 +59,11 @@ public class RangeChecker : MonoBehaviour
             // Get the normalized direction to the target
             var directionToTarget = (target.position - transform.position).normalized;
 
-            //outro jeito de mirar o tiro
-            //https://www.youtube.com/watch?v=kOzhE3_P2Mk
             Instantiate(tankBullet, transform.position, Quaternion.LookRotation(directionToTarget));
             canShoot = false;
             //Cadency of bullets
             StartCoroutine("BulletDelay");
-
         }
-
 
     }
     IEnumerator BulletDelay()
