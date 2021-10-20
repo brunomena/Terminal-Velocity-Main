@@ -15,11 +15,12 @@ public class RangeChecker : MonoBehaviour
 
     public GameObject tankBullet;
     private bool canShoot = true;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -54,7 +55,7 @@ public class RangeChecker : MonoBehaviour
             }
 
 
-        if (canShoot && targetWasInRange)
+        if (canShoot && targetWasInRange && gameManager.isGameActive)
         {
             Vector3 playerPos = new Vector3(target.position.x, target.position.y, target.position.z+8);
             Instantiate(tankBullet, transform.position, Quaternion.LookRotation(playerPos));
