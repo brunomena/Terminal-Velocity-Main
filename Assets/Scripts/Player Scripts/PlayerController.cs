@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             if (Health < 1)
             {
                 gameManager.isGameActive = false;
-                //GameOver
+                gameManager.GameOver();
             }
         }
 
