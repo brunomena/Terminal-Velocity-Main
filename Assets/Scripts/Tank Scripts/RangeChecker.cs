@@ -15,11 +15,12 @@ public class RangeChecker : MonoBehaviour
 
     public GameObject tankBullet;
     private bool canShoot = true;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -54,23 +55,23 @@ public class RangeChecker : MonoBehaviour
             }
 
 
-        if (canShoot && targetWasInRange)
-        { 
-            // Get the normalized direction to the target
-            var directionToTarget = (target.position - transform.position).normalized;
-
-            Instantiate(tankBullet, transform.position, Quaternion.LookRotation(directionToTarget));
+        if (canShoot && targetWasInRange && gameManager.isGameActive)
+        {
+            Vector3 playerPos = new Vector3(target.position.x, target.position.y, target.position.z+8);
+            Instantiate(tankBullet, transform.position, Quaternion.LookRotation(playerPos));
+            //Quaternion.LookRotation(playerPos)
             canShoot = false;
             //Cadency of bullets
             StartCoroutine("BulletDelay");
         }
+
 
     }
     IEnumerator BulletDelay()
     {
 
         //Time the player has to wait until he can shoot another bullet
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         canShoot = true;
     }
 }

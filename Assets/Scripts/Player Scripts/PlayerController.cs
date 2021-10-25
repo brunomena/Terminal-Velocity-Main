@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
     private float tiltInput;
     private Vector3 direction = new Vector3(0.5f, 1, 0);
     public int Health = 10;
-
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             Health -= 1;
+            if (Health < 1)
+            {
+                gameManager.isGameActive = false;
+                gameManager.GameOver();
+            }
         }
 
     }
